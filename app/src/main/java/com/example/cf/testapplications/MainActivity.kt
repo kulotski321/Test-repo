@@ -2,36 +2,29 @@ package com.example.cf.testapplications
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    val foodList = arrayListOf("Chinese","Pizza","Hamburger","McDonalds","Barros Pizza")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        decideBtn.setOnClickListener{
+            val random = Random()
+            val randomFood = random.nextInt(foodList.count())
+            selectedFoodTxt.text = foodList[randomFood]
+        }
+
+        addFoodBtn.setOnClickListener{
+            val newFood = addFoodTxt.text.toString()
+            foodList.add(newFood)
+            addFoodTxt.text.clear()
+            println(foodList)
+        }
+
     }
-    fun printSum(a: Int, b:Int){
-        println("sum of $a and $b is ${a+b}")
-    }
-    fun main(args: Array<String>){
-        printSum(-1,8)
-
-        val num1: Int = 1
-        val num2 =2
-        val num3: Int
-        num3 = 3
-
-        println(" $num1, $num2, and $num3")
-
-        var x = 5
-        x += 1
-    }
-    fun stringTemplates(){
-        var a = 1
-        val s1 = "a is $a"
-
-        a = 2
-        val s2 = "${(s1.replace("is","was"))},but now is $a"
-    }
-
 }
